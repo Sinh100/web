@@ -1,0 +1,938 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"c",
+				"class\tAttr"
+			],
+			[
+				"wi",
+				"width\tproperty"
+			],
+			[
+				"mar",
+				"margin-left\tproperty"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "inc/header.php",
+			"settings":
+			{
+				"buffer_size": 20575,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "modules/product/product_detail.php",
+			"settings":
+			{
+				"buffer_size": 14264,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "Searching 3661 files for \"Listproductdetail\"\n\nC:\\xampp\\htdocs\\EMMY\\library\\product.php:\n    6  \treturn $result;\n    7  }\n    8: function get_Listproductdetail($id_sp)\n    9  {\n   10  \t$sql = \"SELECT * FROM sanpham,loaisanpham, hinhanh WHERE sanpham.trangthai =1 and sanpham.id = hinhanh.hinhspid and loaisanpham.id_loai=sanpham.maloai and id = $id_sp\";\n\nC:\\xampp\\htdocs\\EMMY\\modules\\product\\product_detail.php:\n    5  <?php\n    6      $id_sp = $_GET['id'];\n    7:     $Listproductdetail = get_Listproductdetail($id_sp);\n    8:      \t  // show_array($Listproductdetail);\n    9      ?>\n   10  <!-- breadcrumb -->\n   ..\n   14      <i class=\"fa fa-angle-right m-l-8 m-r-9\" aria-hidden=\"true\"></i>\n   15      </a>\n   16:     <a href=\"?mod=product&act=Categories&id=<?php echo $Listproductdetail['id_loai'] ?>\" class=\"s-text16\">\n   17:     <?php echo $Listproductdetail['loaisanpham']?>\n   18      <i class=\"fa fa-angle-right m-l-8 m-r-9\" aria-hidden=\"true\"></i>\n   19      </a>\n   20      <span class=\"s-text17\">\n   21:     <?php echo $Listproductdetail['tensp']?>\n   22      </span>\n   23  </div>\n   ..\n   52          <div class=\"w-size14 p-t-30 respon5\">\n   53              <?php\n   54:                 if(empty($Listproductdetail))\n   55                  {\n   56                  \techo \"No see products!\";\n   ..\n   61                  \t?>\n   62              <h4 class=\"product-detail-name m-text16 p-b-13\">\n   63:                 <?php echo $Listproductdetail['tensp'] ?>\n   64              </h4>\n   65              <span class=\"m-text17\">\n   66:             $<?php echo $Listproductdetail['gia'] ?>\n   67              </span>\n   68              <p class=\"s-text8 p-t-10\">\n   69:                 <?php echo $Listproductdetail['motangan'] ?>\n   70              </p>\n   71              <!--  -->\n   ..\n   76                      <div class=\"w-size16 flex-m flex-w\">\n   77                          <div class=\"flex-w bo5 of-hidden m-r-22 m-t-10 m-b-10\">\n   78:                             <button min=\"1\" max=\"10\" onclick=\"updateItem1(<?php echo $Listproductdetail['id']?>)\" class=\"btn-num-product-down color1 flex-c-m size7 bg8 eff2\" type=\"submit\" value=\"btn_update_cart\">\n   79                              <i class=\"fs-12 fa fa-minus\" aria-hidden=\"true\"></i>\n   80                              </button>\n   81:                             <input class=\"size8 m-text18 t-center num-product\" min=\"1\" max=\"10\" type=\"number\" id=\"sl_<?php echo $Listproductdetail['id']; ?>\" name=\"soluong\" value=\"1\">\n   82:                             <button min=\"1\" max=\"10\" class=\"btn-num-product-up color1 flex-c-m size7 bg8 eff2\" type=\"submit\" value=\"btn_update_cart\" onclick=\"updateItem(<?php echo $Listproductdetail['id'] ?>)\">\n   83                              <i class=\"fs-12 fa fa-plus\" aria-hidden=\"true\" ></i>\n   84                              </button>\n   ..\n  105                                  \tsl = $(\"#sl_\"+id).val();\n  106                                      size = $(\"#size\").val();\n  107:                                 \t$.get(\"?mod=cart&act=add_to_cart&maloai=<?php echo $Listproductdetail['maloai']; ?>&id=<?php echo $Listproductdetail['id']; ?>&size=<?php echo $Listproductdetail['id']; ?>\",{'sl':sl, 'size':size},{'size':size})\n  108                                  \t// alert(sl);\n  109                                  \n  ...\n  125                                  </button> -->\n  126                              <?php\n  127:                                 if ($Listproductdetail['soluong']>0) {\n  128                                  ?>\n  129:                             <a href=\"?mod=cart&act=show\" onclick=\"updateItem2(<?php echo $Listproductdetail['id'] ?>)\" title=\"Add to cart\" id=\"cart\" class=\"flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4\">Add to cart</a>\n  130                              <?php\n  131                                  }else\n  132                                  {\n  133                                  ?>\n  134:                             <a href=\"#\" onclick=\"updateItem3(<?php echo $Listproductdetail['id'] ?>)\" title=\"Add to cart\" id=\"cart\" class=\"flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4\">Add to cart</a>\n  135                              <?php } ?>\n  136                          </div>\n  ...\n  139              </div>\n  140              <?php\n  141:                 if ($Listproductdetail['soluong']>0) {\n  142:                 \t$Listproductdetail['soluong']=$Listproductdetail['soluong'];\n  143                  }\n  144                  else\n  145                  {\n  146:                 \t$Listproductdetail['soluong'] = 0;\n  147                  \t\t// echo '<p>Available: 0 products so can not buy</p>';\n  148                  }\n  ...\n  154              </div>\n  155              <div class=\"p-b-45\">\n  156:                 <span class=\"s-text8 m-r-35\">Available: <?php echo $Listproductdetail['soluong'];?> products</span> \n  157:                 <span class=\"s-text8\">Categories: <?php echo $Listproductdetail['loaisanpham'] ?></span>\n  158              </div>\n  159              <!--  -->\n  ...\n  166                  <div class=\"dropdown-content dis-none p-t-15 p-b-23\">\n  167                      <p class=\"s-text8\">\n  168:                         <?php echo $Listproductdetail['motadai'] ?>\n  169                      </p>\n  170                  </div>\n  ...\n  209          </div>\n  210          <?php\n  211:             $get_related = get_Related($Listproductdetail['maloai']);\n  212              \t  \t\t// show_array($get_related);\n  213              ?>\n\n28 matches across 2 files\n\n\nSearching 3666 files for \"add_cart\"\n\nC:\\xampp\\htdocs\\EMMY\\library\\cart.php:\n    1  <?php\n    2  \n    3: function add_cart($id, $item,$sl, $sz) {\n    4      if(!empty($sl))\n    5      {\n\nC:\\xampp\\htdocs\\EMMY\\modules\\cart\\add_to_cart.php:\n   15  # Lấy đc thông tin SP cần thêm vào giỏ hàng\n   16  //\n   17: $_SESSION['cart']['buy'][$id] = add_cart($id, $item,$sl,$size);\n   18   // show_array($_SESSION['cart']['buy'][$id]);\n   19  $_SESSION['cart']['info'] = update_info_cart();\n\n2 matches across 2 files\n",
+			"settings":
+			{
+				"buffer_size": 6058,
+				"line_ending": "Windows",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "library/cart.php",
+			"settings":
+			{
+				"buffer_size": 3357,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "library/product.php",
+			"settings":
+			{
+				"buffer_size": 6429,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "modules/cart/add_to_cart.php",
+			"settings":
+			{
+				"buffer_size": 641,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "debug.sublime-project",
+			"settings":
+			{
+				"buffer_size": 216,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "modules/cart/show.php",
+			"settings":
+			{
+				"buffer_size": 14496,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "modules/cart/checkout.php",
+			"settings":
+			{
+				"buffer_size": 12537,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows",
+				"name": "Xdebug Context",
+				"read_only": true,
+				"scratch": true
+			}
+		},
+		{
+			"contents": "",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows",
+				"name": "Xdebug Watch",
+				"read_only": true,
+				"scratch": true
+			}
+		},
+		{
+			"contents": "",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows",
+				"name": "Xdebug Stack",
+				"read_only": true,
+				"scratch": true
+			}
+		},
+		{
+			"contents": "=> C:\\xampp\\htdocs\\EMMY\\modules\\cart\\add_to_cart.php\n\t|+| 3\n=> C:\\xampp\\htdocs\\EMMY\\modules\\product\\product_detail.php\n\t|+| 6\n\t|+| 18\n\t|+| 107\n",
+			"settings":
+			{
+				"buffer_size": 143,
+				"line_ending": "Windows",
+				"name": "Xdebug Breakpoint",
+				"read_only": true,
+				"scratch": true
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"install package",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/xampp/htdocs/EMMY"
+	],
+	"file_history":
+	[
+		"/C/xampp/php/php.ini-development",
+		"/C/xampp/php/php.ini-production",
+		"/C/xampp/htdocs/EMMY/library/cart.php",
+		"/C/Users/MyPC/Desktop/ecoxuanweb/index.html",
+		"/C/Users/MyPC/Desktop/ECOxuan/index.html",
+		"/C/Users/MyPC/Desktop/ecoxuanweb/trunghieukael.github.io/.git/config"
+	],
+	"find":
+	{
+		"height": 40.0
+	},
+	"find_in_files":
+	{
+		"height": 104.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"add_cart",
+			"Listproductdetail",
+			"mod=cart&act",
+			"\"size\":size",
+			"$_SESSION['cart']['buy']",
+			"$_GET['sl']",
+			"add_to_card",
+			"add_cart",
+			"get_list_by_cart()",
+			"get_Listproductdetail",
+			"nguyenloi211098@gmail.com",
+			"container-menu-header",
+			"topbar-email"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 3,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "inc/header.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 20575,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4747,
+								4747
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1330.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "modules/product/product_detail.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 14264,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4895,
+								4895
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1938.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6058,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										141,
+										158
+									],
+									[
+										469,
+										486
+									],
+									[
+										493,
+										510
+									],
+									[
+										550,
+										567
+									],
+									[
+										772,
+										789
+									],
+									[
+										846,
+										863
+									],
+									[
+										1031,
+										1048
+									],
+									[
+										1210,
+										1227
+									],
+									[
+										1440,
+										1457
+									],
+									[
+										1570,
+										1587
+									],
+									[
+										1706,
+										1723
+									],
+									[
+										2042,
+										2059
+									],
+									[
+										2438,
+										2455
+									],
+									[
+										2681,
+										2698
+									],
+									[
+										3075,
+										3092
+									],
+									[
+										3122,
+										3139
+									],
+									[
+										3167,
+										3184
+									],
+									[
+										3472,
+										3489
+									],
+									[
+										3645,
+										3662
+									],
+									[
+										4029,
+										4046
+									],
+									[
+										4333,
+										4350
+									],
+									[
+										4392,
+										4409
+									],
+									[
+										4422,
+										4439
+									],
+									[
+										4555,
+										4572
+									],
+									[
+										4841,
+										4858
+									],
+									[
+										4959,
+										4976
+									],
+									[
+										5230,
+										5247
+									],
+									[
+										5420,
+										5437
+									],
+									[
+										5667,
+										5675
+									],
+									[
+										5891,
+										5899
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								5674,
+								5674
+							]
+						],
+						"settings":
+						{
+							"detect_indentation": false,
+							"line_numbers": false,
+							"output_tag": 2,
+							"result_base_dir": "",
+							"result_file_regex": "^([^ \t].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 2318.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "library/cart.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3357,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								256,
+								256
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "library/product.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6429,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "modules/cart/add_to_cart.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 641,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								479,
+								471
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "debug.sublime-project",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 216,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								196,
+								196
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "modules/cart/show.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 14496,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3363,
+								3363
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "modules/cart/checkout.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 12537,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7423,
+								7423
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3068.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 9,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 11,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 143,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								143,
+								143
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 40.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				2,
+				1
+			],
+			[
+				0,
+				1,
+				1,
+				2
+			],
+			[
+				1,
+				1,
+				2,
+				2
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			0.7,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.xdebug":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "debug.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+		"xdebug":
+		{
+			"hide_conflict": false,
+			"restore_index":
+			{
+				"28":
+				{
+					"group": 0,
+					"index": 0
+				},
+				"29":
+				{
+					"group": 0,
+					"index": 1
+				},
+				"30":
+				{
+					"group": 0,
+					"index": 7
+				},
+				"31":
+				{
+					"group": 0,
+					"index": 4
+				},
+				"32":
+				{
+					"group": 0,
+					"index": 6
+				},
+				"41":
+				{
+					"group": 0,
+					"index": 2
+				},
+				"42":
+				{
+					"group": 0,
+					"index": 3
+				},
+				"45":
+				{
+					"group": 0,
+					"index": 5
+				}
+			},
+			"restore_layout":
+			{
+				"cells":
+				[
+					[
+						0,
+						0,
+						1,
+						1
+					]
+				],
+				"cols":
+				[
+					0.0,
+					1.0
+				],
+				"rows":
+				[
+					0.0,
+					1.0
+				]
+			}
+		}
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 286.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
